@@ -1,24 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-   <meta name="google-site-verification" content="bvpjoV7apAah9sWyaIpsr1SnF01xaBYJ4Mzz_JMGcGU" />
-    <title>Weather Dashboard SS All</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="bvpjoV7apAah9sWyaIpsr1SnF01xaBYJ4Mzz_JMGcGU" />
+
+    <title>Weather Dashboard SS | Precise 36-Hour Weather Forecast</title>
+    <meta name="description" content="Get a highly accurate 36-hour weather forecast with Weather Dashboard SS. Real-time global updates, humidity, and wind tracking for any city or your current location.">
+    <meta name="keywords" content="weather dashboard ss, 36 hour weather forecast, global weather tracker, real-time weather, Shoubhya Sinha weather app">
+    <meta name="author" content="Shoubhya Sinha">
+
+    <meta property="og:title" content="Weather Dashboard SS | 36-Hour Global Forecast">
+    <meta property="og:description" content="Track live weather and get a detailed next 36-hour forecast for any city worldwide.">
+    <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Weather Dashboard SS",
+      "operatingSystem": "WEB",
+      "applicationCategory": "WeatherApplication",
+      "featureList": "36-hour detailed weather forecasting, real-time location tracking, global city search"
+    }
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>🌍 Weather Dashboard SS (All Across the Globe)</h1>
+<header>
+    <h1>🌍 Weather Dashboard SS (All Across the Globe)</h1>
+</header>
 
-<div class="search-box">
-    <input type="text" id="city" placeholder="Enter city name">
-    <button onclick="getWeather()">Search</button>
-    <button onclick="getLocationWeather()">📍 My Location</button>
-</div>
+<main>
+    <section class="search-box">
+        <label for="city" style="display:none;">Enter city name</label>
+        <input type="text" id="city" placeholder="Enter city name">
+        <button onclick="getWeather()">Search</button>
+        <button onclick="getLocationWeather()">📍 My Location</button>
+    </section>
 
-<div id="weather"></div>
+    <section id="weather" aria-live="polite">
+        </section>
 
-<h2>Next 36 Hours</h2>
-<div id="forecast"></div>
+    <section>
+        <h2>Next 36 Hours Forecast</h2>
+        <p style="color: #666; font-size: 0.9em;">Detailed hour-by-hour weather data and atmospheric conditions.</p>
+        <div id="forecast"></div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Weather Dashboard SS by Shoubhya Sinha</p>
+</footer>
 
 <script src="script.js"></script>
 </body>
