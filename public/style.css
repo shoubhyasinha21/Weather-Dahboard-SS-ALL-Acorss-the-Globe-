@@ -7,7 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(to right, black, darkslategray, slategray);
+    background: linear-gradient(135deg, midnightblue, darkslategray, slategray);
     color: white;
     overflow-x: hidden;
 }
@@ -26,6 +26,38 @@ h1 {
     letter-spacing: 1px;
 }
 
+/* 🌍 Next 36 Hours */
+h2 {
+    color: #ffd369; /* elegant gold */
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* 🌐 Global Weather Forecast Tool */
+section h2 {
+    color: #00ffcc; /* teal premium */
+}
+
+/* ⭐ Features Heading */
+section h3 {
+    color: #ff7b54; /* soft orange */
+}
+
+section {
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 800px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+section li {
+    color: #e0e0e0;
+    margin: 6px 0;
+}
 /* ================= SEARCH ================= */
 .search-box {
     display: flex;
