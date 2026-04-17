@@ -1,12 +1,13 @@
+/* ================= GLOBAL ================= */
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    background: linear-gradient(to right, black, darkslategray, slategray);
     color: white;
     overflow-x: hidden;
 }
@@ -14,20 +15,24 @@ body {
 /* Keep content above animation */
 body > * {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
-/* Heading */
+/* ================= HEADING ================= */
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     margin-top: 40px;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
-/* Search Box */
+/* ================= SEARCH ================= */
 .search-box {
     display: flex;
     gap: 10px;
     margin: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 input {
@@ -42,53 +47,37 @@ button {
     padding: 12px 18px;
     border-radius: 8px;
     border: none;
-    background: #ffd54f;
+    background: gold;
     font-weight: bold;
     cursor: pointer;
 }
 
 button:hover {
-    background: #ffca28;
+    background: goldenrod;
 }
 
-/* CURRENT WEATHER CARD */
+/* ================= WEATHER CARD ================= */
 #weather {
     margin-top: 20px;
     width: 90%;
     max-width: 700px;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
     border-radius: 15px;
     padding: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     text-align: center;
 }
 
-#weather h2 {
-    margin-bottom: 10px;
-}
-
-#weather p {
-    margin: 6px 0;
-    font-size: 18px;
-}
-
-/* FORECAST SECTION */
+/* ================= FORECAST ================= */
 #forecast {
     margin-top: 20px;
     width: 90%;
     max-width: 900px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 15px;
-    padding: 20px;
     display: flex;
     overflow-x: auto;
     gap: 15px;
 }
 
-/* Forecast cards */
 #forecast div {
     min-width: 110px;
     background: white;
@@ -103,25 +92,7 @@ button:hover {
     transform: scale(1.08);
 }
 
-/* Time + Date */
-#forecast div p:first-child {
-    font-size: 13px;
-    margin-bottom: 5px;
-}
-
-/* Weather icon */
-#forecast div p:nth-child(2) {
-    font-size: 28px;
-    margin: 5px 0;
-}
-
-/* Temperature */
-#forecast div p:last-child {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-/* GRAPH */
+/* ================= GRAPH ================= */
 canvas {
     margin-top: 20px;
     width: 90% !important;
@@ -131,93 +102,107 @@ canvas {
     border-radius: 15px;
 }
 
-/* ================= WEATHER ANIMATIONS ================= */
-
-/* Base animation layer */
-body::before {
+/* ================= BASE ANIMATION LAYER ================= */
+body::before,
+body::after {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 200%;
+    height: 200%;
     pointer-events: none;
     z-index: 0;
 }
 
-/* ☀️ SUNNY */
+/* ================= ☀️ SUNNY ================= */
 body.sunny {
-    background: linear-gradient(to top, #fceabb, #f8b500);
+    background: linear-gradient(to top, lightyellow, orange);
 }
 
 body.sunny::before {
-    background: radial-gradient(circle at top, rgba(255, 223, 0, 0.5), transparent 60%);
-    animation: sunMove 4s ease-in-out infinite alternate;
+    background: radial-gradient(circle at 70% 20%, rgba(255, 215, 0, 0.6), transparent 60%);
+    animation: sunPulse 4s ease-in-out infinite alternate;
 }
 
-@keyframes sunMove {
-    0% { opacity: 0.6; transform: translateY(-10px); }
-    100% { opacity: 1; transform: translateY(10px); }
+@keyframes sunPulse {
+    from { transform: scale(1); opacity: 0.6; }
+    to { transform: scale(1.2); opacity: 1; }
 }
 
-/* 🌧️ RAIN (FIXED) */
+/* ================= 🌧️ REALISTIC RAIN ================= */
 body.rain {
-    background: linear-gradient(to bottom, #203a43, #2c5364);
+    background: linear-gradient(to bottom, darkslategray, slategray);
 }
 
+/* Layer 1 (thin fast rain) */
 body.rain::before {
-    /* Creates thin, realistic rain streaks */
-    background-image: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(255, 255, 255, 0) 100%
+    background-image: repeating-linear-gradient(
+        120deg,
+        rgba(255,255,255,0.25) 0px,
+        rgba(255,255,255,0.25) 2px,
+        transparent 2px,
+        transparent 12px
     );
-    background-size: 2px 150px;
-    animation: rainDrop 0.5s linear infinite;
+    animation: rainFast 0.4s linear infinite;
 }
 
-@keyframes rainDrop {
-    from { background-position: 0 0; }
-    to { background-position: 100px 1000px; }
+/* Layer 2 (slow thicker rain) */
+body.rain::after {
+    background-image: repeating-linear-gradient(
+        120deg,
+        rgba(255,255,255,0.15) 0px,
+        rgba(255,255,255,0.15) 3px,
+        transparent 3px,
+        transparent 18px
+    );
+    animation: rainSlow 0.8s linear infinite;
 }
 
-/* ☁️ CLOUDY (FIXED - NO COVID TEXT) */
+@keyframes rainFast {
+    from { transform: translateY(0); }
+    to { transform: translateY(300px); }
+}
+
+@keyframes rainSlow {
+    from { transform: translateY(0); }
+    to { transform: translateY(200px); }
+}
+
+/* ================= ☁️ CLOUDY ================= */
 body.cloudy {
-    background: linear-gradient(to top, #bdc3c7, #2c3e50);
+    background: linear-gradient(to top, lightgray, darkslategray);
 }
 
 body.cloudy::before {
-    /* Using a reliable transparent cloud texture */
     background: url("https://www.transparenttextures.com/patterns/clouds.png") repeat;
-    opacity: 0.4;
-    animation: cloudMove 30s linear infinite;
+    opacity: 0.5;
+    animation: cloudMove 40s linear infinite;
 }
 
 @keyframes cloudMove {
-    from { background-position: 0 0; }
-    to { background-position: 1000px 500px; }
+    from { transform: translateX(0); }
+    to { transform: translateX(-500px); }
 }
 
-/* ⛈️ THUNDER */
+/* ================= ⛈️ THUNDER ================= */
 body.thunder {
-    background: linear-gradient(to top, #232526, #414345);
+    background: linear-gradient(to top, black, dimgray);
 }
 
 body.thunder::before {
-    background: rgba(255, 255, 255, 0);
-    animation: thunderFlash 3s infinite;
+    animation: flash 3s infinite;
 }
 
-@keyframes thunderFlash {
-    0%, 92%, 100% { background: rgba(255, 255, 255, 0); }
-    95% { background: rgba(255, 255, 255, 0.3); }
-    97% { background: rgba(255, 255, 255, 0.1); }
+@keyframes flash {
+    0%, 90%, 100% { background: transparent; }
+    92% { background: rgba(255,255,255,0.8); }
+    94% { background: rgba(255,255,255,0.2); }
 }
 
-/* ❄️ SNOW */
+/* ================= ❄️ SNOW ================= */
 body.snow {
-    background: linear-gradient(to top, #e6dada, #274046);
+    background: linear-gradient(to top, whitesmoke, darkslategray);
 }
 
 body.snow::before {
@@ -226,7 +211,51 @@ body.snow::before {
     animation: snowFall 6s linear infinite;
 }
 
+body.snow::after {
+    background-image: radial-gradient(white 3px, transparent 3px);
+    background-size: 50px 50px;
+    animation: snowFallSlow 10s linear infinite;
+}
+
 @keyframes snowFall {
-    from { background-position: 0 0; }
-    to { background-position: 50px 500px; }
+    from { transform: translateY(0); }
+    to { transform: translateY(400px); }
+}
+
+@keyframes snowFallSlow {
+    from { transform: translateY(0); }
+    to { transform: translateY(250px); }
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* MOBILE */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    #weather {
+        padding: 15px;
+    }
+
+    #forecast div {
+        min-width: 90px;
+        font-size: 14px;
+    }
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+    h1 {
+        font-size: 2.2rem;
+    }
 }
