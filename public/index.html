@@ -9,85 +9,133 @@
     <meta name="description" content="Get a highly accurate 36-hour weather forecast with Weather Dashboard SS. Real-time global updates and city tracking for professional weather analysis.">
 
     <link rel="stylesheet" href="style.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* Global Reset to prevent shifting */
+        /* Global Reset to prevent shifting and scrolling */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centers everything horizontally */
-            width: 100%;
-            overflow-x: hidden; /* Prevents side-to-side wobble */
+            align-items: center; 
+            justify-content: space-between; /* Keeps content spaced without overflow */
+            width: 100vw;
+            height: 100vh; /* Lock height to viewport */
+            overflow: hidden; /* No scrolling */
             font-family: 'Poppins', sans-serif;
+            background-color: WhiteSmoke;
         }
 
-        /* Ensuring every section stays centered */
-        h1, .search-box, #weather, h2, .forecast-desc, #forecast, footer {
+        /* Container to manage flow without scrolling */
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
+            padding: 10px;
         }
 
+        h1 {
+            margin: 10px 0;
+            font-size: 1.5rem;
+            color: DarkSlateGrey;
+        }
+
+        /* Centered Search Box */
         .search-box {
-            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid Gray;
+        }
+
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+            background-color: RoyalBlue;
+            color: White;
+            border: none;
+            border-radius: 5px;
         }
 
         /* Weather result styling */
         #weather {
-            min-height: 100px; /* Prevents "jumping" when data loads */
-            margin-bottom: 20px;
+            min-height: 50px;
+            margin: 10px 0;
+            font-weight: 600;
         }
 
-        /* The 36 Hours Heading - Special Color */
+        /* Canvas for Weather Visualization (e.g., Temperature Graph) */
+        #weatherCanvas {
+            background-color: White;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 90%;
+            height: 150px; /* Smaller height to prevent scroll */
+        }
+
+        /* Heading - replaced hex with Coral */
         h2 {
-            color: #ff7e5f; /* A stylish coral/orange color */
-            margin-top: 40px;
-            font-size: 2rem;
+            color: Coral; 
+            margin: 15px 0 5px 0;
+            font-size: 1.5rem;
         }
 
-        /* Description below 36 Hours - Different Color */
+        /* Description - replaced hex with BlueViolet */
         .forecast-desc {
-            color: #6a11cb; /* A classy deep purple/blue */
+            color: BlueViolet; 
             font-weight: 300;
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-bottom: 10px;
         }
 
         /* Forecast Grid Centering */
         #forecast {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap; /* Prevent wrap to keep everything on one line/screen */
+            overflow-x: auto; /* Allow horizontal scroll only if cards overflow */
             justify-content: center; 
-            gap: 15px;
-            padding: 20px;
-            max-width: 1200px;
+            gap: 10px;
+            width: 100%;
+            max-width: 1000px;
+            padding-bottom: 10px;
         }
 
-        /* Classy Footer Styling */
+        /* Classy Footer */
         footer {
-            margin-top: 50px;
-            padding: 30px 0;
-            background-color: #f9f9f9;
+            padding: 15px 0;
+            background-color: GhostWhite;
             width: 100%;
+            text-align: center;
+            border-top: 1px solid LightGray;
         }
 
         .footer-text {
-            font-family: 'Playfair Display', serif; /* Classy Serif Font */
+            font-family: 'Playfair Display', serif;
             font-style: italic;
-            color: #333;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
+            color: Black;
+            font-size: 1rem;
+            margin: 0;
         }
 
         .copyright-year {
-            color: #888;
-            font-size: 0.8rem;
-            margin-top: 5px;
+            color: DimGray;
+            font-size: 0.7rem;
+            margin: 2px 0 0 0;
         }
     </style>
 
@@ -104,20 +152,25 @@
 </head>
 <body>
 
-    <h1 style="margin-top: 30px;">🌍 Weather Dashboard SS (All Across the Globe)</h1>
+    <div class="main-container">
+        <h1>🌍 Weather Dashboard SS</h1>
 
-    <div class="search-box">
-        <input type="text" id="city" placeholder="Enter city name">
-        <button onclick="getWeather()">Search</button>
-        <button onclick="getLocationWeather()">📍 My Location</button>
+        <div class="search-box">
+            <input type="text" id="city" placeholder="Enter city name">
+            <button onclick="getWeather()">Search</button>
+            <button onclick="getLocationWeather()">📍 My Location</button>
+        </div>
+
+        <div id="weather">Waiting for location...</div>
+
+        <canvas id="weatherCanvas" width="800" height="150"></canvas>
+
+        <h2>Next 36 Hours</h2>
+        <p class="forecast-desc">Detailed hour-by-hour atmospheric changes.</p>
+        
+        <div id="forecast">
+            </div>
     </div>
-
-    <div id="weather"></div>
-
-    <h2>Next 36 Hours</h2>
-    <p class="forecast-desc">Detailed hour-by-hour atmospheric changes and trend analysis.</p>
-    
-    <div id="forecast"></div>
 
     <footer>
         <p class="footer-text">© Weather Dashboard by Shoubhya Sinha</p>
@@ -125,5 +178,13 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Placeholder logic to initialize the canvas
+        const canvas = document.getElementById('weatherCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = "SlateBlue";
+        ctx.font = "16px Poppins";
+        ctx.fillText("Weather Trend Visualization will appear here", 230, 85);
+    </script>
 </body>
 </html>
