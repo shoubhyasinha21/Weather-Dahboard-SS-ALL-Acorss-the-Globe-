@@ -2,133 +2,113 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <!-- MOBILE -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- GOOGLE VERIFICATION -->
     <meta name="google-site-verification" content="bvpjoV7apAah9sWyaIpsr1SnF01xaBYJ4Mzz_JMGcGU" />
-
-    <!-- CANONICAL -->
     <link rel="canonical" href="https://weatherdashboardssall.onrender.com/">
 
-    <!-- SEO META -->
-    <meta name="description" content="Check real-time weather, 36-hour forecast, and live global weather updates with Weather Dashboard SS. Fast, accurate and easy to use.">
-    <meta name="keywords" content="weather app, live weather, forecast, weather dashboard, global weather, India weather">
+    <meta name="description" content="Get real-time weather updates & a 36-hour forecast with Weather Dashboard SS. Accurate live global weather tracking for cities in India and worldwide.">
+    <meta name="keywords" content="Weather Dashboard SS, live weather forecast, 36-hour weather, real-time weather India, global weather updates, Shoubhya Sinha">
     <meta name="author" content="Shoubhya Sinha">
 
-    <!-- OPEN GRAPH -->
-    <meta property="og:title" content="Weather Dashboard SS">
-    <meta property="og:description" content="Live global weather with forecast and animations">
+    <meta property="og:title" content="Weather Dashboard SS | Live Global Weather Forecast">
+    <meta property="og:description" content="Accurate 36-hour forecasts and real-time global updates. Developed by Shoubhya Sinha.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://weatherdashboardssall.onrender.com/">
     <meta property="og:image" content="https://weatherdashboardssall.onrender.com/preview.png">
 
-    <title>Weather Dashboard SS | Live Global Weather Forecast</title>
+    <title>Weather Dashboard SS | Live Global Weather Forecast & 36-Hour Updates</title>
 
-    <!-- GOOGLE FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-
-    <!-- FAVICON -->
     <link rel="icon" href="favicon.ico">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- STRUCTURED DATA (APP) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Weather Dashboard SS",
-      "url": "https://weatherdashboardssall.onrender.com/",
-      "description": "A global weather dashboard providing real-time weather updates, temperature, and 36-hour forecast for any country, state, city."
-      "applicationCategory": "WeatherApplication",
-      "operatingSystem": "All",
-      "author": {
-        "@type": "Person",
-        "name": "Shoubhya Sinha"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "Weather Dashboard SS",
+          "url": "https://weatherdashboardssall.onrender.com/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://weatherdashboardssall.onrender.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "WebApplication",
+          "name": "Weather Dashboard SS",
+          "url": "https://weatherdashboardssall.onrender.com/",
+          "description": "A professional global weather dashboard providing real-time updates and 36-hour forecasts using live API data.",
+          "applicationCategory": "WeatherApplication",
+          "operatingSystem": "All",
+          "author": {
+            "@type": "Person",
+            "name": "Shoubhya Sinha"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "INR"
+          }
+        }
+      ]
     }
     </script>
-
-    <!-- STRUCTURED DATA (WEBSITE) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Weather Dashboard SS",
-      "url": "https://weatherdashboardssall.onrender.com/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://weatherdashboardssall.onrender.com/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-
 </head>
 
 <body>
 
-<h1>🌍 Weather Dashboard SS (All Across the Globe)</h1>
+<header>
+    <h1>🌍 Weather Dashboard SS</h1>
+    <p style="color: lightgray; text-align: center;">Live Global Weather Updates All Across the Globe</p>
+</header>
 
-<div class="search-box">
-    <input type="text" id="city" placeholder="Enter city name (e.g. London, Delhi and so on)">
-    <button onclick="getWeather()">Search</button>
-    <button onclick="getLocationWeather()">📍 My Location</button>
-</div>
+<main>
+    <div class="search-box">
+        <input type="text" id="city" placeholder="Enter city name (e.g. Delhi, London, New York)">
+        <button onclick="getWeather()">Search Forecast</button>
+        <button onclick="getLocationWeather()">📍 My Location</button>
+    </div>
 
-<div id="weather"></div>
+    <div id="weather"></div>
 
-<h2>Next 36 Hours</h2>
-<div id="forecast"></div>
+    <h2 style="color:orange; text-align:center;">36-Hour Hourly Forecast</h2>
+    <div id="forecast"></div>
 
-<!-- SEO CONTENT -->
-<section style="max-width:800px; padding:20px; text-align:center; font-family:Poppins, sans-serif;">
-    
-    <h2 style="color:orange;">Global Weather Forecast Tool</h2>
-    
-    <p style="color:white; font-size:16px;">
-        Weather Dashboard SS is a modern weather application that allows users
-        to check real-time weather conditions, temperature, and a 36-hour forecast
-        for cities across the globe. Built using live weather API data, it provides
-        accurate and fast updates for better planning.
-    </p>
+    <section style="max-width:800px; margin: 0 auto; padding:20px; text-align:center; font-family:Poppins, sans-serif;">
+        <h2 style="color:orange;">Advanced Global Weather Forecast Tool</h2>
+        <p style="color:white; font-size:16px; line-height: 1.6;">
+            <strong>Weather Dashboard SS</strong> is a high-performance web application designed for users who need 
+            accurate, real-time meteorological data. Whether you are checking the weather in <strong>India</strong> 
+            or searching for international climate conditions, our tool leverages live API integration to deliver 
+            precision forecasts.
+        </p>
 
-   <h3 style="margin-top:20px; color: white; -webkit-text-stroke: 0.5px black;">Features</h3>
-
-<ul style="list-style:none; padding:0; margin-top:10px;">
-    <li style="margin:10px 0; font-size:16px;">
-        <span style="color:Green; font-weight:bold;">✔</span>
-        <span style="color: white; font-weight: bold; -webkit-text-stroke: 0.8px black; text-shadow: 1px 1px 2px black;"> Real-time weather updates
-        </span>
-    </li>
-
-        <li style="margin:10px 0; font-size:16px;">
-            <span style="color:Green; font-weight:bold;">✔</span>
-            <span style="color:white;font-weight: bold; -webkit-text-stroke: 0.8px black; text-shadow: 1px 1px 2px black;"> Location-based weather detection</span>
-       
-        <li style="margin:10px 0; font-size:16px;">
-            <span style="color:green; font-weight:bold;">✔</span>
-            <span style="color:white;font-weight: bold; -webkit-text-stroke: 0.8px black; text-shadow: 1px 1px 2px black;"> Animated weather backgrounds</span>
-        </li>
-    </ul>
+        <h3 style="margin-top:20px; color: white; -webkit-text-stroke: 0.5px black;">Key Features</h3>
+        <ul style="list-style:none; padding:0; margin-top:10px;">
+            <li style="margin:10px 0; font-size:16px;">
+                <span style="color:Green; font-weight:bold;">✔</span>
+                <span style="color: white; font-weight: bold; -webkit-text-stroke: 0.8px black; text-shadow: 1px 1px 2px black;"> Real-Time Global Weather Updates</span>
+            </li>
+            <li style="margin:10px 0; font-size:16px;">
+                <span style="color:Green; font-weight:bold;">✔</span>
+                <span style="color:white; font-weight: bold; -webkit-text-stroke: 0.8px black; text-shadow: 1px 1px 2px black;"> Precise Location-Based Detection</span>
+            </li>
+            <li style="margin:10px 0; font-size:16px;">
+                <span style="color:green; font-weight:bold;">✔</span>
+                <span style="color:white; font-weight: bold; -webkit-text-stroke: 0.8px black; text-shadow: 1px 1px 2px black;"> Immersive Animated Weather Visuals</span>
+            </li>
+        </ul>
+    </section>
+</main>
 
 <footer class="footer">
     <span class="brand">Professional Edition</span> | 
     Developed by <strong>Shoubhya Sinha</strong> &copy; 2026
 </footer>
 
-
-</section>
-<!-- JS -->
 <script src="script.js"></script>
-
 </body>
 </html>
