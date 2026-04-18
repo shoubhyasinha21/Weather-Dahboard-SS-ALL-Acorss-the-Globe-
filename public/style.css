@@ -7,7 +7,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(135deg, midnightblue, darkslategray, slategray);
+
+    /* NEW PROFESSIONAL BACKGROUND */
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+
     color: white;
     overflow-x: hidden;
 }
